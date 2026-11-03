@@ -1,0 +1,15 @@
+[package]
+name = "th80-cli"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Offline profile management CLI for TH80 configurations"
+
+[[bin]]
+name = "th80ctl"
+path = "src/main.rs"
+
+[dependencies]
+serde = { version = "1", features = ["derive"] }
+th80-core = { path = "../th80-core" }
+serde_json = "1"

@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "id": "phase10-fixture",
+  "name": "Phase 10 compatibility fixture",
+  "description": "Synthetic schema-v1 profile in the Phase 10 persisted format",
+  "device_model": "th80_pro",
+  "configuration": {
+    "keymap": { "layers": [] },
+    "macros": { "items": [] },
+    "lighting": {
+      "enabled": null,
+      "mode": null,
+      "brightness": null,
+      "speed": null,
+      "color": null,
+      "per_key": [],
+      "effect_parameters": {}
+    },
+    "options": { "values": {} }
+  },
+  "metadata": {
+    "created_at_unix_ms": 1000,
+    "modified_at_unix_ms": 1000,
+    "tags": []
+  },
+  "provenance": "local_draft"
+}

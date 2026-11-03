@@ -1,0 +1,16 @@
+/target/
+# Large local UI captures and review artifacts; reports remain versioned.
+/.phase14-*-evidence/
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa
+id_ed25519
+.DS_Store
+Thumbs.db
+*.swp

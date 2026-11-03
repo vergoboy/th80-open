@@ -1,0 +1,20 @@
+[package]
+name = "th80ctl"
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+description = "Read-only Linux HID inspection tools for Epomaker TH80 research"
+
+[workspace]
+members = ["crates/th80-probe", "crates/th80-core", "crates/th80-cli", "crates/th80-gui"]
+default-members = [".", "crates/th80-probe", "crates/th80-core", "crates/th80-cli", "crates/th80-gui"]
+resolver = "2"
+
+[dependencies]
+hidapi = { version = "2.6", default-features = false, features = ["linux-native"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+
+[[bin]]
+name = "th80-hid-research"
+path = "src/main.rs"

@@ -1,0 +1,37 @@
+name: Repository platform verification
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  repository-tests:
+    name: Repository tests (${{ matrix.os }})
+    timeout-minutes: 30
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Record Rust toolchain
+        run: |
+          rustc --version --verbose
+          cargo --version
+          rustup show active-toolchain
+      - name: Check formatting
+        run: cargo fmt --all -- --check
+      - name: Test offline crates, native GUI and repository integration
+        run: cargo test --locked -p th80-core -p th80-cli -p th80-gui -p th80-probe
+      - name: Lint offline crates and native GUI
+        run: cargo clippy --locked -p th80-core -p th80-cli -p th80-gui -p th80-probe --all-targets -- -D warnings
+      - name: Build offline crates and native GUI
+        run: cargo build --locked --release -p th80-core -p th80-cli -p th80-gui -p th80-probe
+      - name: Build offline crate and GUI documentation
+        run: cargo doc --locked -p th80-core -p th80-cli -p th80-gui -p th80-probe --no-deps
